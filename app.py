@@ -51,4 +51,6 @@ def home():
     return render_template("index.html", error=None, response_email=None)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Get the port from Heroku or default to 5000
+    app.run(debug=True, host="0.0.0.0", port=port)
+
