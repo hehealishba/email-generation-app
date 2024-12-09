@@ -9,8 +9,10 @@ load_dotenv()
 # Load OpenAI API key from environment
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+
 if not openai.api_key:
-    print("Error: OpenAI API key not configured. Check your .env file.")
+    raise RuntimeError("Error: OpenAI API key not configured. Check your .env file or Heroku config.")
+
 
 app = Flask(__name__)
 
@@ -52,5 +54,4 @@ def home():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Get the port from Heroku or default to 5000
-    app.run(debug=True, host="0.0.0.0", port=port)
-
+    app.run(debug=False, host="0.0.0.0", port=port)
